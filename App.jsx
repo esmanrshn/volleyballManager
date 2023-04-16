@@ -1,16 +1,14 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import {
-  FlatList, StyleSheet, Text, View, Image, Button, ScrollView,
-} from 'react-native';
+import { FlatList, StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Takim } from './components/Takim';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <MyStack />
-  );
+  return <MyStack />;
 }
 
 const styles = StyleSheet.create({
@@ -21,28 +19,33 @@ const styles = StyleSheet.create({
     marginTop: 100,
   },
 });
+
 function HomeScreen({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text>
-          TAKIMLAR
-        </Text>
+        <Text>TAKIMLAR</Text>
 
         <FlatList
           data={[
-            <Takim amblemURL="https://tinyurl.com/fenerbahce-logo" takimIsmi="FENERBAHCE" key={0} />,
+            <Takim
+              amblemURL="https://tinyurl.com/fenerbahce-logo"
+              takimIsmi="FENERBAHCE"
+              key={0}
+            />,
             <Takim amblemURL="https://tinyurl.com/ptt-logo" takimIsmi="PTT" key={1} />,
-            <Takim amblemURL="https://tinyurl.com/eczacibasi-logo" takimIsmi="ECZACIBAŞI VİTRA" key={2} />,
+            <Takim
+              amblemURL="https://tinyurl.com/eczacibasi-logo"
+              takimIsmi="ECZACIBAŞI VİTRA"
+              key={2}
+            />,
             <Takim amblemURL="https://tinyurl.com/vakifbank-logo" takimIsmi="VAKIFBANK" key={3} />,
           ]}
           renderItem={(comp) => comp.item}
         />
 
         <View style={{ backgroundColor: '#eeeeee', marginTop: 16 }}>
-
           <ButtonComponent onPress={() => navigation.navigate('Home', { screen: 'App.js' })} />
-
         </View>
 
         <StatusBar />
@@ -62,30 +65,7 @@ function MyStack() {
 }
 
 function OrnekComponent() {
-  return (
-    <></>
-  );
-}
-
-function Takim({ amblemURL, takimIsmi }) {
-  return (
-    <View>
-      <Text style={{ textAlign: 'center' }}>
-        {takimIsmi}
-      </Text>
-      <Image
-        source={{
-          uri: amblemURL,
-          width: 100,
-          height: 100,
-        }}
-        resizeMethod="resize"
-        style={{
-          marginBottom: 16,
-        }}
-      />
-    </View>
-  );
+  return <></>;
 }
 
 // const buttoncomp = ({Button}) => {
@@ -101,7 +81,7 @@ function Takim({ amblemURL, takimIsmi }) {
 //   )
 // }
 
-function ButtonComponent({ onPress }) {
+export function ButtonComponent({ onPress }) {
   const ismim = 'Esma';
 
   return (
@@ -115,18 +95,3 @@ function ButtonComponent({ onPress }) {
     </View>
   );
 }
-
-// const SayfaComp = ({sayfacomp}) => {
-// return (
-
-const sayfacomp = () => (
-  <View>
-    <Text>
-      <Takim amblemURL="https://tinyurl.com/fenerbahce-logo" takimIsmi="FENERBAHCE" />
-      <Takim amblemURL="https://tinyurl.com/ptt-logo" takimIsmi="PTT" />
-      <Takim amblemURL="https://tinyurl.com/eczacibasi-logo" takimIsmi="ECZACIBAŞI VİTRA" />
-      <Takim amblemURL="https://tinyurl.com/vakifbank-logo" takimIsmi="VAKIFBANK" />
-    </Text>
-    <ButtonComponent onPress={() => <ButtonComponent />} />
-  </View>
-);
